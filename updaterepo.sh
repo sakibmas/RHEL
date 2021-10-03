@@ -4,7 +4,6 @@ ssep="\n------------------------------------------------------------------------
 dsep="\n===================================================================================\n"
 for rid in $(subscription-manager repos --list | grep -B3 "Enabled:   1" | grep "Repo ID:" | cut -d" " -f5)
 do
- # logp=/var/log/updaterepo-$rid-$(date +%Y%m%d%H%M).log
  date
  echo -e "reposync --repoid=$rid --download_path=/var/www/html"
  echo -e "$ssep"
