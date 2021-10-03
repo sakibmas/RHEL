@@ -13,6 +13,6 @@ do
 done
 echo -e "Creating xml-based rpm metadata"
 createrepo --verbose --update /var/www/html
-createrepo --verbose --groupfile /var/www/html/repodata/*comps*.xml /var/www/html
+createrepo --verbose --groupfile /var/www/html/repodata/*.xml /var/www/html
 yum -y --releasever=7.7 update
 /usr/sbin/reboot
