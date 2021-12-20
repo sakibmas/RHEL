@@ -1,0 +1,17 @@
+---
+- hosts: "{{ host }}"
+  tasks:
+  - name: Update postfix
+    yum:
+     name: postfix
+     state: latest
+    notify: Restart postfix
+  - name: Install patches
+    import_tasks: YumSecurity.yml
+
+  handlers:
+  - name: Restart postfix
+    service:
+     name: postfix
+     state: restarted
+...
