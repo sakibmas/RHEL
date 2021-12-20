@@ -1,0 +1,26 @@
+---
+- hosts: "{{ host }}"
+  tasks:
+  - name: Update httpd
+    yum:
+     name: httpd
+     state: latest
+    notify: Restart httpd
+  - name: Update MySql
+    yum:
+     name: mysql-server
+     state: latest
+    notify: Restart mysqld
+  - name: Install patches
+    import_tasks: YumSecurity.yml
+
+  handlers:
+  - name: Restart httpd
+    service:
+     name: httpd
+     state: restarted
+  - name: Restart mysqld
+    service:
+     name: mysqld
+     state: restarted
+...
