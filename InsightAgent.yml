@@ -1,0 +1,29 @@
+---
+- hosts: "{{ host }}"
+  become: yes
+  tasks:
+   - name: Install unzip
+     package:
+      name: unzip
+      state: present
+   - name: Unarchive file 
+     unarchive:
+      src: linuxInsightAgent.zip
+      dest: /root
+   - name: Change file permission
+     file:
+      path: /root/agent_installer.sh
+      mode: u+x
+   - name: Run installation
+     shell: /root/agent_installer.sh install_start
+   - name: Copy using inline content
+     copy:
+      content: {"auditd-compatibility-mode":true} 
+      dest: /opt/rapid7/ir_agent/components/insight_agent/common/audit.conf
+     tags: auditd
+   - name: Restart ir_agent
+     service:
+      name: ir_agent
+      state: restarted
+     tags: auditd
+...
