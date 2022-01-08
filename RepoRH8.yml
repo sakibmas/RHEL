@@ -1,0 +1,51 @@
+---
+  - debug:
+     msg:
+      - Distribution: "{{ ansible_facts['distribution'] }}" 
+      - Version: "{{ ansible_facts['distribution_version'] }}"
+  - name: Add baseos repo
+    yum_repository:
+     name: baseos
+     description: base packages
+     baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-baseos-rpms
+     gpgcheck: no
+     exclude: redhat-release,redhat-release-eula
+  - name: Add appstream repo
+    yum_repository:
+     name: appstream
+     description: appstream packages
+     baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-appstream-rpms
+     gpgcheck: no
+  - name: Add sap netweaver repo
+    yum_repository:
+     name: sap-netweaver
+     description: sap netweaver packages
+     baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-sap-netweaver-rpms
+     gpgcheck: no
+  - name: Add sap solutions repo
+    yum_repository:
+     name: sap-solutions
+     description: sap solutions packages
+     baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-sap-solutions-rpms
+     gpgcheck: no
+  - name: Add codeready repo
+    yum_repository:
+     name: codeready
+     description: codeready packages
+     baseurl: http://rhelrepo8.bergerbd.com/codeready-builder-for-rhel-8-x86_64-rpms
+     gpgcheck: no
+  - name: Add supplementary repo
+    yum_repository:
+     name: supplementary 
+     description: supplementary packages
+     baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-supplementary-rpms
+     gpgcheck: no
+  - name: Update security patches
+    yum:
+     security: yes
+     state: latest
+  - name: Install bugfix
+    yum:
+     bugfix: yes
+     state: latest
+...
