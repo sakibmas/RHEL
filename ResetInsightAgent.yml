@@ -1,0 +1,21 @@
+---
+- hosts: "{{ host }}"
+  become: yes
+  tasks:
+   - name: Stop ir_agent
+     service:
+      name: ir_agent
+      state: stopped
+   - name: Remove agent.jobs.tem_realtime.json
+     file:
+      path: /opt/rapid7/ir_agent/components/insight_agent/common/config/agent.jobs.tem_realtime.json
+      state: absent
+   - name: Remove
+     file:
+      path: /opt/rapid7/ir_agent/components/insight_agent/common/snapshots
+      state: absent
+   - name: Start ir_agent
+     service:
+      name: ir_agent
+      state: started
+...
