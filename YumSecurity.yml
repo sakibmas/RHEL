@@ -1,0 +1,10 @@
+---
+  - name: Install security Patches
+    yum:
+     security: yes
+     state: latest
+  - name: Install bugfix
+    yum:
+     bugfix: yes
+     state: latest
+...
