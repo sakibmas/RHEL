@@ -40,6 +40,12 @@
      description: supplementary packages
      baseurl: http://rhelrepo8.bergerbd.com/rhel-8-for-x86_64-supplementary-rpms
      gpgcheck: no
+  - name: Add satellite-tools repo
+    yum_repository:
+     name: satellite-tools
+     description: satellite-tools packages
+     baseurl: http://rhelrepo8.bergerbd.com/satellite-tools-6.10-for-rhel-8-x86_64-rpms
+     gpgcheck: no
   - name: Update security patches
     yum:
      security: yes
