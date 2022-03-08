@@ -26,8 +26,6 @@
     var_password_pam_ocredit: !!str -1
     var_password_pam_ucredit: !!str -1
     var_accounts_password_minlen_login_defs: !!str 12
-    var_accounts_max_concurrent_login_sessions: !!str 10
-    var_accounts_user_umask: !!str 027
   tasks:
     - name: Do not allow users to reuse recent passwords - system-auth (change)
       replace:
@@ -886,6 +884,50 @@
         - NIST-800-53-IA-5(c)
         - PCI-DSS-Req-8.2.3
         - accounts_password_pam_ucredit
+        - low_complexity
+        - low_disruption
+        - medium_severity
+        - no_reboot_needed
+        - restrict_strategy
+
+
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+      tags:
+        - CCE-80652-1
+        - CJIS-5.6.2.1
+        - DISA-STIG-RHEL-08-020231
+        - NIST-800-171-3.5.7
+        - NIST-800-53-CM-6(a)
+        - NIST-800-53-IA-5(1)(a)
+        - NIST-800-53-IA-5(f)
+        - accounts_password_minlen_login_defs
+        - low_complexity
+        - low_disruption
+        - medium_severity
+        - no_reboot_needed
+        - restrict_strategy
+
+
+
+    - name: Set Password Minimum Length in login.defs
+      lineinfile:
+        dest: /etc/login.defs
+        regexp: ^PASS_MIN_LEN *[0-9]*
+        state: present
+        line: PASS_MIN_LEN        {{ var_accounts_password_minlen_login_defs }}
+        create: true
+      when: '"shadow-utils" in ansible_facts.packages'
+      tags:
+        - CCE-80652-1
+        - CJIS-5.6.2.1
+        - DISA-STIG-RHEL-08-020231
+        - NIST-800-171-3.5.7
+        - NIST-800-53-CM-6(a)
+        - NIST-800-53-IA-5(1)(a)
+        - NIST-800-53-IA-5(f)
+        - accounts_password_minlen_login_defs
         - low_complexity
         - low_disruption
         - medium_severity
