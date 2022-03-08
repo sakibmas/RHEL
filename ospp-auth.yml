@@ -5,9 +5,7 @@
 # $ oscap xccdf generate fix --result-id xccdf_org.open-scap_testresult_xccdf_org.ssgproject.content_profile_ospp --fix-type ansible xccdf-results.xml
 #
 # How to apply this Ansible Playbook:
-# $ ansible-playbook -i "localhost," -c local playbook.yml
-# $ ansible-playbook -i "192.168.1.155," playbook.yml
-# $ ansible-playbook -i inventory.ini playbook.yml
+# $ ansible-playbook playbook.yml -e host=target
 #
 ###############################################################################
 
