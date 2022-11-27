@@ -1,4 +1,6 @@
 ---
+- hosts: "{{ host }}"
+  tasks:
   - name: Install security Patches
     yum:
      security: yes
