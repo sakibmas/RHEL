@@ -11,8 +11,14 @@
      name: mysql-server
      state: latest
     notify: Restart mysqld
-  - name: Install patches
-    import_tasks: YumSecurity.yml
+  - name: Install security Patches
+    yum:
+     security: yes
+     state: latest
+  - name: Install bugfix
+    yum:
+     bugfix: yes
+     state: latest
 
   handlers:
   - name: Restart httpd
