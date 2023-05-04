@@ -1,6 +1,7 @@
 #!/bin/bash
 . ~/.bashrc
 dsep="==================================================================================="
+yum -y install createrepo yum-utils httpd
 for rid in $(subscription-manager repos --list | grep -B3 "Enabled:   1" | grep "Repo ID:" | cut -d" " -f5)
 do
  date
