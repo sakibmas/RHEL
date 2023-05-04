@@ -7,8 +7,6 @@ do
  echo -e "reposync --repoid=$rid --download-path=/var/www/html"
  echo -e "$dsep"
  reposync --repoid=$rid --download-path=/var/www/html --downloadcomps --download-metadata --delete --gpgcheck
- echo -e "$dsep\nCreating xml-based group file\n$dsep"
- createrepo --verbose -g /var/www/html/$rid/repodata/repomd.xml /var/www/html/$rid/repodata
  echo -e "$dsep"
 done
 echo -e "$dsep\nCreating xml-based repo file\n$dsep"
