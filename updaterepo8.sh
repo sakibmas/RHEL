@@ -13,4 +13,4 @@ done
 echo -e "$dsep\nCreating xml-based repo file\n$dsep"
 createrepo --update --verbose /var/www/html
 yum -y --releasever=8.4 update
-/usr/sbin/reboot
+#/usr/sbin/reboot

@@ -16,4 +16,4 @@ echo -e "$dsep"
 echo -e "Creating xml-based group metadata"
 createrepo --verbose --groupfile /var/www/html/repodata/repomd.xml /var/www/html/repodata/
 yum -y --releasever=7.7 update
-/usr/sbin/reboot
+#/usr/sbin/reboot
