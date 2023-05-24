@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Update") {
             steps {
-              node('vpndr') {
+              node('azrhelrepo8') {
                    sh '''#!/bin/sh
                          . ~/.bashrc
                          dsep="==================================================================================="
