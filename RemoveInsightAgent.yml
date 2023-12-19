@@ -1,0 +1,27 @@
+---
+- hosts: "{{ host }}"
+  become: yes
+  tasks:
+   - name: Install unzip
+     package:
+      name: unzip
+      state: present
+   - name: Unarchive file 
+     unarchive:
+      src: linuxInsightAgent.zip
+      dest: /root
+   - name: Change file permission
+     file:
+      path: /root/agent_installer.sh
+      mode: u+x
+   - name: Stop ir_agent
+     service:
+      name: ir_agent
+      state: stopped
+   - name: Run uninstallation
+     shell: /root/agent_installer.sh uninstall
+   - name: Remove rapid7 directory
+     file:
+      path: /opt/rapid7
+      state: absent
+
